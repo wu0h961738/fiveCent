@@ -45,7 +45,7 @@ public class ControllerAwardPool {
     //(edit pool)put item into pool
     @RequestMapping(value = "/Pool/{poolCode}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<String> putIntoPool(@PathVariable String poolCode, @RequestBody Map<String, Object> reqMap){
+    public ResponseEntity<String> putIntoPool(@PathVariable String poolCode, @RequestBody Map<String, Object> reqMap) throws InterruptedException {
         RenderPools pools = beanFactory.getBean("awardPools", RenderPools.class);
         return new ResponseEntity<>(pools.put(poolCode, reqMap), HttpStatus.OK);
     }
