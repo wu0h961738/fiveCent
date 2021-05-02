@@ -1,5 +1,6 @@
 package com.venom.backend.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -51,10 +52,13 @@ public class RenderPools {
         return "delete from pool successfully.";
     }
 
-    public String put(String poolCode, Map<String, Object> ticketObj){
+    public String put(String poolCode, Map<String, Object> ticketObj) throws InterruptedException {
         lock.lock();
+//        if(!lock.tryLock(200, TimeUnit.MILLISECONDS)){ //TODO 不曉得為什麼都不會有取鎖失敗的情況發生
+//            return "got lock failed.";
+//        }
         try{
-            while(queue.size() == 10){
+            while(queue.size() == 3){
                 System.out.println("pool was full.");
                 queueNotFull.await();
             }
