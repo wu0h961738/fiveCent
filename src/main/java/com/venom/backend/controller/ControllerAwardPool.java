@@ -1,5 +1,6 @@
 package com.venom.backend.controller;
 
+import com.venom.backend.service.RabbitSvc;
 import com.venom.backend.service.RenderPools;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
@@ -46,8 +47,14 @@ public class ControllerAwardPool {
     @RequestMapping(value = "/Pool/{poolCode}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<String> putIntoPool(@PathVariable String poolCode, @RequestBody Map<String, Object> reqMap) throws InterruptedException {
-        RenderPools pools = beanFactory.getBean("awardPools", RenderPools.class);
-        return new ResponseEntity<>(pools.put(poolCode, reqMap), HttpStatus.OK);
+        //put item into pool TODO : push to redis cache
+        beanFactory.getBean("awardPools", RenderPools.class).put(poolCode, reqMap);
+
+        //TODO check payment
+        //TODO check if client have queue in AOP way
+        //enable pub/sub
+        beanFactory.getBean("Rabbit", RabbitSvc.class).sendToExch(reqMap); //TODO 暫時先binding with static queue
+        return new ResponseEntity<>("successfully push to queue", HttpStatus.OK);
     }
 
     //remove item from pool

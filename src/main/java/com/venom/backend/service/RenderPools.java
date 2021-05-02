@@ -1,11 +1,11 @@
 package com.venom.backend.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -53,10 +53,10 @@ public class RenderPools {
     }
 
     public String put(String poolCode, Map<String, Object> ticketObj) throws InterruptedException {
-        // lock.lock();
-        if(!lock.tryLock(200, TimeUnit.MILLISECONDS)){ //TODO 不曉得為什麼都不會有取鎖失敗的情況發生
-            return "got lock failed.";
-        }
+        lock.lock();
+//        if(!lock.tryLock(200, TimeUnit.MILLISECONDS)){ //TODO 不曉得為什麼都不會有取鎖失敗的情況發生
+//            return "got lock failed.";
+//        }
         try{
             while(queue.size() == 3){
                 System.out.println("pool was full.");
