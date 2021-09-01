@@ -1,7 +1,7 @@
 package com.venom.backend.controller;
 
-import com.venom.backend.service.RabbitSvc;
-import com.venom.backend.service.RenderPools;
+import com.venom.backend.impl.RabbitImpl;
+import com.venom.backend.impl.RenderPools;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.http.HttpStatus;
@@ -14,7 +14,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/AwardPool")
-public class ControllerAwardPool {
+public class AwardPoolController {
 
     @Autowired
     private AutowireCapableBeanFactory beanFactory;
@@ -53,7 +53,7 @@ public class ControllerAwardPool {
         //TODO check payment
         //TODO check if client have queue in AOP way
         //enable pub/sub
-        beanFactory.getBean("Rabbit", RabbitSvc.class).sendToExch(reqMap); //TODO 暫時先binding with static queue
+        beanFactory.getBean("Rabbit", RabbitImpl.class).sendToExch(reqMap); //TODO 暫時先binding with static queue
         return new ResponseEntity<>("successfully push to queue", HttpStatus.OK);
     }
 

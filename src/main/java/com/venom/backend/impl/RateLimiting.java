@@ -1,6 +1,6 @@
-package com.venom.backend.service;
+package com.venom.backend.impl;
 
-import com.venom.backend.intfac.TestGadget;
+import com.venom.backend.interfac.TestGadget;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;

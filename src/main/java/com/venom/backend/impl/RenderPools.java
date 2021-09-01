@@ -1,6 +1,5 @@
-package com.venom.backend.service;
+package com.venom.backend.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

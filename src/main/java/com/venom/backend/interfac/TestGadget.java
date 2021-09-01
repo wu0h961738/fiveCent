@@ -1,4 +1,4 @@
-package com.venom.backend.intfac;
+package com.venom.backend.interfac;
 
 public interface TestGadget {
     public String move();

@@ -1,20 +1,14 @@
-package com.venom.backend.service;
+package com.venom.backend.impl;
 
-import org.springframework.amqp.core.BindingBuilder;
-import org.springframework.amqp.core.FanoutExchange;
-import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.core.TopicExchange;
-import org.springframework.amqp.rabbit.config.QueueParser;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @Service(value="Rabbit")
-public class RabbitSvc {
+public class RabbitImpl {
 
     @Autowired
     private RabbitTemplate sendTempl;

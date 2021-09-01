@@ -15,6 +15,8 @@
 	<description>venom of backend tech</description>
 	<properties>
 		<java.version>1.8</java.version>
+		<retrofit2.groupId>com.squareup.retrofit2</retrofit2.groupId>
+		<retrofit2.version>2.5.0</retrofit2.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -34,12 +36,56 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- http client -->
+		<!-- use license 'The Apache License, Version 2.0' -->
+		<!-- https://github.com/square/retrofit/blob/master/LICENSE.txt -->
+		<dependency>
+			<groupId>${retrofit2.groupId}</groupId>
+			<artifactId>retrofit</artifactId>
+			<version>${retrofit2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>${retrofit2.groupId}</groupId>
+			<artifactId>converter-gson</artifactId>
+			<version>${retrofit2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.squareup.okhttp3</groupId>
+			<artifactId>logging-interceptor</artifactId>
+			<version>3.12.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.auth0</groupId>
+			<artifactId>java-jwt</artifactId>
+			<version>3.2.0</version>
+		</dependency>
+
+		<!-- use license 'The Apache License, Version 2.0' -->
+		<!-- https://github.com/google/gson/blob/master/LICENSE -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.6.2</version>
+		</dependency>
+		<!-- template engine -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.12</version>
+			<scope>provided</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.amqp</groupId>
 			<artifactId>spring-rabbit-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-	</dependencies>
+    </dependencies>
 
 	<build>
 		<plugins>
